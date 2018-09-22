@@ -10,12 +10,13 @@ WORKDIR /usr/src
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
   DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    bison flex faketime perl perl-modules \
+    docbook-xsl bison flex faketime perl perl-modules \
     libacl1-dev libarchive-dev libattr1-dev libblkid-dev libbsd-dev \
-    libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev \
+    libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev liblmdb-dev \
     libncurses5-dev libntdb-dev libpam0g-dev libpcap-dev libpopt-dev \
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
     python-all-dev python-dnspython python-ldb python-ldb-dev python-ntdb \
+    libjansson-dev libgpgme11-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/stable/samba-${SAMBA_VERSION}.tar.asc" &&\
