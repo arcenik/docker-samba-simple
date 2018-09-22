@@ -2,7 +2,7 @@
 FROM francois75/docker-authfromhost:debian-stretch
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.8.5"
+ENV SAMBA_VERSION "4.9.0"
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
 ################################################################################
