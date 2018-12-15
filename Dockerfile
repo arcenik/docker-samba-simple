@@ -20,9 +20,9 @@ RUN apt-get update &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/stable/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget "${SAMBA_MIRROR}/stable/samba-${SAMBA_VERSION}.tar.gz" &&\
-  gpg --import samba-pubkey.asc &&\
+  gpg --no-tty --import samba-pubkey.asc &&\
   gunzip samba-${SAMBA_VERSION}.tar.gz &&\
-  gpg --verify samba-${SAMBA_VERSION}.tar.asc &&\
+  gpg --no-tty --verify samba-${SAMBA_VERSION}.tar.asc &&\
   tar xf samba-${SAMBA_VERSION}.tar
 
 WORKDIR /usr/src/samba-${SAMBA_VERSION}
