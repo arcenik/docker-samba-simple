@@ -2,7 +2,7 @@
 FROM francois75/docker-authfromhost:debian-stretch
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.9.5"
+ENV SAMBA_VERSION "4.10.0"
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
 ################################################################################
@@ -16,7 +16,7 @@ RUN apt-get update &&\
     libncurses5-dev libntdb-dev libpam0g-dev libpcap-dev libpopt-dev \
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
     python-all-dev python-dnspython python-ldb python-ldb-dev python-ntdb \
-    libjansson-dev libgpgme11-dev \
+    libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/stable/samba-${SAMBA_VERSION}.tar.asc" &&\
