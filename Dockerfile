@@ -39,7 +39,7 @@ FROM francois75/docker-authfromhost:debian-stretch-slim
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
   DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    supervisor
+    supervisor libfam0
 
 COPY files/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/supervisord/nmbd.conf     /etc/supervisor/conf.d/nmbd.conf
