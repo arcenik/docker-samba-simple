@@ -1,5 +1,5 @@
 ################################################################################
-FROM francois75/docker-authfromhost:debian-stretch
+FROM francois75/docker-authfromhost:debian-buster
 MAINTAINER Francois Scala "github@arcenik.net"
 
 ENV SAMBA_VERSION "4.9.13"
@@ -13,9 +13,9 @@ RUN apt-get update &&\
     docbook-xsl bison flex faketime perl perl-modules \
     libacl1-dev libarchive-dev libattr1-dev libblkid-dev libbsd-dev \
     libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev liblmdb-dev \
-    libncurses5-dev libntdb-dev libpam0g-dev libpcap-dev libpopt-dev \
+    libncurses5-dev libpam0g-dev libpcap-dev libpopt-dev \
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
-    python-all-dev python-dnspython python-ldb python-ldb-dev python-ntdb \
+    python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
@@ -34,7 +34,7 @@ RUN ./configure &&\
   ln -vs /usr/local/samba/sbin/* /usr/local/sbin/
 
 ################################################################################
-FROM francois75/docker-authfromhost:debian-stretch-slim
+FROM francois75/docker-authfromhost:debian-buster-slim
 
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
