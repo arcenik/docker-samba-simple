@@ -2,9 +2,9 @@
 FROM francois75/docker-authfromhost:debian-buster
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.11.0rc4"
+ENV SAMBA_VERSION "4.11.0"
 # SAMBA_FOLDER can be "stable" or "rc"
-ENV SAMBA_FOLDER "rc" 
+ENV SAMBA_FOLDER "stable" 
 
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
