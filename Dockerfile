@@ -2,7 +2,7 @@
 FROM francois75/docker-authfromhost:debian-buster
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.9.15"
+ENV SAMBA_VERSION "4.9.17"
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
 ################################################################################
