@@ -20,7 +20,7 @@ RUN apt-get update &&\
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
     python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
-    python-testtools python3 subunit xsltproc zlib1g-dev wget &&\
+    python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
