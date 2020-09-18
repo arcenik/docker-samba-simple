@@ -2,9 +2,9 @@
 FROM francois75/docker-authfromhost:debian-buster
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.12.6"
+ENV SAMBA_VERSION "4.13.0"
 # SAMBA_FOLDER can be "stable" or "rc"
-ENV SAMBA_FOLDER "stable" 
+ENV SAMBA_FOLDER "stable"
 
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
@@ -20,7 +20,8 @@ RUN apt-get update &&\
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
     python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
-    python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl &&\
+    python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl \
+    libdbus-1-dev libicu-dev libtracker-sparql-2.0-dev &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
@@ -42,7 +43,7 @@ FROM francois75/docker-authfromhost:debian-buster-slim
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
   DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    supervisor libfam0
+    supervisor libfam0 libtracker-sparql-2.0
 
 COPY files/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/supervisord/nmbd.conf     /etc/supervisor/conf.d/nmbd.conf
