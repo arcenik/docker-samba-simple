@@ -2,9 +2,9 @@
 FROM francois75/docker-authfromhost:debian-buster
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.13.4"
+ENV SAMBA_VERSION "4.14.0rc2"
 # SAMBA_FOLDER can be "stable" or "rc"
-ENV SAMBA_FOLDER "stable"
+ENV SAMBA_FOLDER "rc"
 
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
@@ -21,7 +21,8 @@ RUN apt-get update &&\
     python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl \
-    libdbus-1-dev libicu-dev libtracker-sparql-2.0-dev &&\
+    libdbus-1-dev libicu-dev libtracker-sparql-2.0-dev python3-markdown \
+    python3-dnspython &&\
   wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
