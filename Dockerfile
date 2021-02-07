@@ -4,7 +4,7 @@ MAINTAINER Francois Scala "github@arcenik.net"
 
 ENV SAMBA_VERSION "4.12.11"
 # SAMBA_FOLDER can be "stable" or "rc"
-ENV SAMBA_FOLDER "stable" 
+ENV SAMBA_FOLDER "stable"
 
 ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 
@@ -12,7 +12,7 @@ ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 WORKDIR /usr/src
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
-  DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+  DEBIAN_FRONTEND=noninteractive apt-get install -q -y -o Dpkg::Use-Pty=0 \
     docbook-xsl bison flex faketime perl perl-modules \
     libacl1-dev libarchive-dev libattr1-dev libblkid-dev libbsd-dev \
     libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev liblmdb-dev \
@@ -21,10 +21,9 @@ RUN apt-get update &&\
     python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl &&\
-  wget "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
-  wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
-  wget "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
-  gpg --no-tty --import samba-pubkey.asc &&\
+  wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
+  wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
+  gpg --no-tty --keyserver hkps://keyserver.ubuntu.com --recv-key 6F33915B6568B7EA &&\
   gunzip samba-${SAMBA_VERSION}.tar.gz &&\
   gpg --no-tty --verify samba-${SAMBA_VERSION}.tar.asc &&\
   tar xf samba-${SAMBA_VERSION}.tar
