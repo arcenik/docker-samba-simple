@@ -21,9 +21,10 @@ RUN apt-get update &&\
     python-all-dev python-dnspython python-ldb python-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
     python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl &&\
+  wget -nv "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
-  gpg --no-tty --keyserver hkps://keyserver.ubuntu.com --recv-key 6F33915B6568B7EA &&\
+  gpg --no-tty --import samba-pubkey.asc &&\
   gunzip samba-${SAMBA_VERSION}.tar.gz &&\
   gpg --no-tty --verify samba-${SAMBA_VERSION}.tar.asc &&\
   tar xf samba-${SAMBA_VERSION}.tar
