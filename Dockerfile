@@ -1,5 +1,5 @@
 ################################################################################
-FROM francois75/docker-authfromhost:debian-buster
+FROM francois75/docker-authfromhost:debian-bullseye
 MAINTAINER Francois Scala "github@arcenik.net"
 
 ENV SAMBA_VERSION "4.16.0"
@@ -18,11 +18,11 @@ RUN apt-get update &&\
     libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev liblmdb-dev \
     libncurses5-dev libpam0g-dev libpcap-dev libpopt-dev \
     libreadline-dev libsubunit-dev libtalloc-dev libtdb-dev libtevent-dev \
-    python-all-dev python-dnspython python-ldb python-ldb-dev \
+    python3-all-dev python3-dnspython python3-ldb python3-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
-    python-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl \
+    python3-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl \
     libdbus-1-dev libicu-dev libtracker-sparql-2.0-dev python3-markdown \
-    python3-dnspython &&\
+    libjson-perl &&\
   wget -nv "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
   wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
   wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
@@ -39,7 +39,7 @@ RUN ./configure &&\
   ln -vs /usr/local/samba/sbin/* /usr/local/sbin/
 
 ################################################################################
-FROM francois75/docker-authfromhost:debian-buster-slim
+FROM francois75/docker-authfromhost:debian-bullseye-slim
 
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
