@@ -2,7 +2,7 @@
 FROM francois75/docker-authfromhost:debian-bullseye
 MAINTAINER Francois Scala "github@arcenik.net"
 
-ENV SAMBA_VERSION "4.16.0"
+ENV SAMBA_VERSION "4.16.7"
 # SAMBA_FOLDER can be "stable" or "rc"
 ENV SAMBA_FOLDER "stable"
 
