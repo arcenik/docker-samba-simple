@@ -3,7 +3,7 @@ FROM francois75/docker-authfromhost:debian-bookworm
 LABEL org.opencontainers.image.authors="github@arcenik.net"
 LABEL org.opencontainers.image.source="https://github.com/arcenik/docker-authfromhost"
 
-ENV SAMBA_VERSION "4.21.0"
+ENV SAMBA_VERSION "4.20.5"
 # SAMBA_FOLDER can be "stable" or "rc"
 ENV SAMBA_FOLDER "stable"
 
