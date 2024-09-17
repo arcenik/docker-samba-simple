@@ -1,8 +1,9 @@
 ################################################################################
-FROM francois75/docker-authfromhost:debian-bullseye
-MAINTAINER Francois Scala "github@arcenik.net"
+FROM francois75/docker-authfromhost:debian-bookworm
+LABEL org.opencontainers.image.authors="github@arcenik.net"
+LABEL org.opencontainers.image.source="https://github.com/arcenik/docker-authfromhost"
 
-ENV SAMBA_VERSION "4.17.4"
+ENV SAMBA_VERSION "4.21.0"
 # SAMBA_FOLDER can be "stable" or "rc"
 ENV SAMBA_FOLDER "stable"
 
@@ -11,8 +12,8 @@ ENV SAMBA_MIRROR  "https://download.samba.org/pub/samba/"
 ################################################################################
 WORKDIR /usr/src
 RUN apt-get update &&\
-  DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
-  DEBIAN_FRONTEND=noninteractive apt-get install -q -y -o Dpkg::Use-Pty=0 \
+  DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq -o Dpkg::Use-Pty=0 &&\
+  DEBIAN_FRONTEND=noninteractive apt-get install -yqq -o Dpkg::Use-Pty=0 \
     docbook-xsl bison flex faketime perl perl-modules \
     libacl1-dev libarchive-dev libattr1-dev libblkid-dev libbsd-dev \
     libcap-dev libcups2-dev libgnutls28-dev libldap2-dev libldb-dev liblmdb-dev \
@@ -21,11 +22,11 @@ RUN apt-get update &&\
     python3-all-dev python3-dnspython python3-ldb python3-ldb-dev \
     libjansson-dev libgpgme11-dev python3-dev libtasn1-bin libfam-dev \
     python3-testtools python3 subunit xsltproc zlib1g-dev wget libparse-yapp-perl \
-    libdbus-1-dev libicu-dev libtracker-sparql-2.0-dev python3-markdown \
+    libdbus-1-dev libicu-dev libtracker-sparql-3.0-dev python3-markdown \
     libjson-perl &&\
-  wget -nv "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
-  wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
-  wget -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
+  wget --quiet -nv "${SAMBA_MIRROR}/samba-pubkey.asc" &&\
+  wget --quiet -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.asc" &&\
+  wget --quiet -nv "${SAMBA_MIRROR}/${SAMBA_FOLDER}/samba-${SAMBA_VERSION}.tar.gz" &&\
   gpg --no-tty --import samba-pubkey.asc &&\
   gunzip samba-${SAMBA_VERSION}.tar.gz &&\
   gpg --no-tty --verify samba-${SAMBA_VERSION}.tar.asc &&\
@@ -39,12 +40,12 @@ RUN ./configure &&\
   ln -vs /usr/local/samba/sbin/* /usr/local/sbin/
 
 ################################################################################
-FROM francois75/docker-authfromhost:debian-bullseye-slim
+FROM francois75/docker-authfromhost:debian-bookworm-slim
 
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
   DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-    supervisor libfam0 libtracker-sparql-2.0
+    supervisor libfam0 libtracker-sparql-3.0
 
 COPY files/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/supervisord/nmbd.conf     /etc/supervisor/conf.d/nmbd.conf
