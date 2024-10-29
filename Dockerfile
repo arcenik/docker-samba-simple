@@ -1,5 +1,5 @@
 ################################################################################
-FROM francois75/docker-authfromhost:debian-bookworm
+FROM francois75/docker-authfromhost:debian-bookworm-latest
 LABEL org.opencontainers.image.authors="github@arcenik.net"
 LABEL org.opencontainers.image.source="https://github.com/arcenik/docker-authfromhost"
 
@@ -40,7 +40,7 @@ RUN ./configure &&\
   ln -vs /usr/local/samba/sbin/* /usr/local/sbin/
 
 ################################################################################
-FROM francois75/docker-authfromhost:debian-bookworm-slim
+FROM francois75/docker-authfromhost:debian-bookworm-slim-latest
 
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq &&\
